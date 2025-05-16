@@ -5,6 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Каталог курсов</title>
   <style>
+    <script>
+  if (window.Telegram && Telegram.WebApp) {
+    Telegram.WebApp.ready();
+    console.log('Telegram WebApp инициализирован');
+
+    // Получаем Telegram user_id
+    const userId = Telegram.WebApp.initDataUnsafe?.user?.id || 'unknown';
+
+    // Функция: отправка запроса на выдачу ссылки
+    function requestAccess(courseId) {
+      fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          user_id: userId,
+          course_id: courseId
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
+        alert(`🎉 Доступ выдан!\nСсылка на курс: https://example.com/${courseId}`);
+        console.log('Ответ сервера:', data);
+      })
+      .catch(err => {
+        console.error('Ошибка при запросе доступа:', err);
+        alert('❌ Ошибка при получении доступа. Попробуйте позже.');
+      });
+    }
+
+    // Делаем функцию доступной глобально
+    window.requestAccess = requestAccess;
+  }
+</script>
     body {
       font-family: sans-serif;
       margin: 0;
@@ -58,15 +93,15 @@
   <div class="course-list">
     <div class="course">
       <h2>Читаем «Рассказы о Шерлоке Холмсе»"</h2>
-      <button class="btn" onclick="alert('Переход к оплате курса 1')">Оплатить</button>
+      <button class="btn" onclick="requestAccess('course1')">Оплатить</button>
     </div>
     <div class="course">
       <h2>Курс "Биология для всех"</h2>
-      <button class="btn" onclick="alert('Переход к оплате курса 2')">Оплатить</button>
+     <button class="btn" onclick="requestAccess('course2')">Оплатить</button>
     </div>
     <div class="course">
       <h2>Курс "Автоматизация доступа"</h2>
-      <button class="btn" onclick="alert('Переход к оплате курса 3')">Оплатить</button>
+      <button class="btn" onclick="requestAccess('course3')">Оплатить</button>
     </div>
   </div>
 
