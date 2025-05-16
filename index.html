@@ -69,5 +69,12 @@
       <button class="btn" onclick="alert('Переход к оплате курса 3')">Оплатить</button>
     </div>
   </div>
+
+  <script>
+    if (window.Telegram && Telegram.WebApp) {
+      Telegram.WebApp.ready();
+      console.log('Telegram WebApp инициализирован');
+    }
+  </script>
 </body>
 </html>
