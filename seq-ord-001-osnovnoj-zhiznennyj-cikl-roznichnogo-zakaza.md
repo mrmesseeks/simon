@@ -274,3 +274,15 @@ end note
 
 @enduml
 ```
+
+[drawio:./seq-ord-001-osnovnoj-zhiznennyj-cikl-roznichnogo-zakaza.svg::211px:101px]
+
+```mermaid
+sequenceDiagram
+	Alice->>+John: Hello John, how are you?
+	Alice->>+John: John, can you hear me?
+	John-->>-Alice: Hi Alice, I can hear you!
+	John-->>-Alice: I feel great!
+```
+
+[bpmn:./seq-ord-001-osnovnoj-zhiznennyj-cikl-roznichnogo-zakaza.bpmn::376px:120px]
